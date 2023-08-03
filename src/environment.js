@@ -1,0 +1,1 @@
+const urlAdmin = 'https://apis.rubypets.co.uk'
