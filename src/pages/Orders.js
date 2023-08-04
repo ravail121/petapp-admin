@@ -416,6 +416,17 @@ export default function UserPage() {
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
+                      <InputLabel id="Order-No">Payment Id</InputLabel>
+
+                      <TextField
+                        labelId="Order-No"
+                        fullWidth
+                        value={DetailsOrder?.paymentId}
+                        disabled={true}
+
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
                       <InputLabel id="Email-Address">Email Address</InputLabel>
 
                       <TextField
