@@ -683,10 +683,13 @@ export default function UserPage() {
 
         )}
         <Grid item textAlign={'right'} style={{ display: 'flex', flexDirection: 'column', alignItems: 'end', textAlign: 'end' }} mt={3} >
-          <label>Total Revenue <small>(Inc Tax & Shipping Fee)</small></label>
+          {/* <label>Total </label> */}
 
           <div style={{ border: '1px solid gray', width: '26%', borderRadius: '8px', padding: '10px', background: 'antiquewhite' }}>
-            £{TotalRevenue.toFixed(2)}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <label>Total = </label> £{TotalRevenue.toFixed(2)}
+            </div>
+
           </div>
         </Grid>
 
