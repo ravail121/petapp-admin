@@ -279,6 +279,7 @@ export default function UserPage() {
         console.log("data", data)
         fetchProducts()
         if (data.statusCode == 200) {
+
           setShowSpinner(false)
           fetchProducts();
 
@@ -287,8 +288,9 @@ export default function UserPage() {
             autoClose: 3000,
           });
         }
-        handleClose1()
         handleCloseMenu()
+        setOpen1(false)
+
 
       })
       .catch((error) => {
@@ -471,11 +473,25 @@ export default function UserPage() {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    handleChange(event)
-    setSelectedImage(URL.createObjectURL(file));
-    setImage(file);
-  };
 
+    // const selectedImage = event.target.files[0];
+
+    if (file) {
+      // Check if the selected file is a GIF image
+      if (file.type === 'image/gif') {
+        toast.error("GIF images are not allowed.", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 3000,
+        });
+        // alert('GIF images are not allowed.');
+        event.target.value = ''; // Clear the file input
+        return;
+      }
+      handleChange(event)
+      setSelectedImage(URL.createObjectURL(file));
+      setImage(file);
+    };
+  }
   const handleChangeFiles = (event) => {
     const file = event.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
@@ -821,6 +837,8 @@ export default function UserPage() {
                         variant="contained"
                         color="secondary"
                         onClick={cancelEdit}
+                        disabled={showSpinner}
+
                       >
                         Clear
                       </Button>
@@ -957,7 +975,7 @@ export default function UserPage() {
               <p>Are you sure you want to delete this Product?</p>
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleClose1} color="primary">
+              <Button onClick={() => setOpen1(false)} color="primary">
                 Cancel
               </Button>
               <Button onClick={deleteProduct} color="error" loading={showSpinner}>
@@ -1002,14 +1020,15 @@ export default function UserPage() {
             <DialogContent>
               {showSpinner && <div className='row' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '30vw', height: '200px' }}><CircularProgress size="6rem" /></div>}
               {!showSpinner && <p>File Successfully Uploaded</p>}
+              {/* {!showSpinner && <p>File Format Not Supported Uploaded</p>} */}
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleClose3} color="primary">
+              {/* <Button onClick={handleClose3} color="primary">
                 Cancel
               </Button>
               <Button onClick={handleClose3} color="primary" loading={showSpinner}>
                 Ok
-              </Button>
+              </Button> */}
             </DialogActions>
           </Dialog>
 

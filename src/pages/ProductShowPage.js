@@ -379,6 +379,8 @@ const ProductShowPage = () => {
                   variant="contained"
                   color="secondary"
                   required
+                  disabled={showSpinner}
+
                   onClick={cancelEdit}
                 >
                   Clear

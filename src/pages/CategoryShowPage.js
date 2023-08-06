@@ -199,12 +199,31 @@ const CategoryShowPage = () => {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
+
+    if (file.type === 'image/gif') {
+      toast.error("GIF images are not allowed.", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 3000,
+      });
+      // alert('GIF images are not allowed.');
+      event.target.value = ''; // Clear the file input
+      return;
+    }
     setSelectedImage(URL.createObjectURL(file));
     setImage(file);
     updateImageCategory(file, 1)
   };
   const handleImageChange1 = (event) => {
     const file = event.target.files[0];
+    if (file.type === 'image/gif') {
+      toast.error("GIF images are not allowed.", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 3000,
+      });
+      // alert('GIF images are not allowed.');
+      event.target.value = ''; // Clear the file input
+      return;
+    }
     setSelectedImage1(URL.createObjectURL(file));
     setImage(file);
     updateImageCategory(file, 0)
@@ -364,6 +383,7 @@ const CategoryShowPage = () => {
                   variant="contained"
                   color="secondary"
                   required
+                  disabled={showSpinner}
                   onClick={cancelEdit}
                 >
                   Clear
