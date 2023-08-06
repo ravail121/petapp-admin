@@ -529,15 +529,19 @@ export default function UserPage() {
   const handleClose4 = () => {
     setOpen4(false);
   };
+
   const handleClose2 = () => {
     setOpen2(false);
   };
+
   const handleClose6 = () => {
     setOpen6(false);
   };
+
   const handleClose5 = () => {
     setOpen5(false);
   };
+
   const handleOpenMenu = (event, id) => {
 
     setOpen(event.currentTarget);
@@ -549,6 +553,7 @@ export default function UserPage() {
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
+
   const fetchCategories = (e, pageNumber) => {
 
     fetch(`https://apis.rubypets.co.uk/admin/categories/list`, {
@@ -623,8 +628,6 @@ export default function UserPage() {
     setPage(0);
     setRowsPerPage(parseInt(event.target.value, 10));
   };
-
-
 
   const handleKeyPress = (event) => {
     if (event.key === 'e') {

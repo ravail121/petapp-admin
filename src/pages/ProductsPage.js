@@ -445,6 +445,8 @@ export default function ProductsPage() {
                       variant="contained"
                       color="secondary"
                       onClick={cancelEdit}
+                      disabled={showSpinner}
+
                     >
                       Clear
                     </Button>

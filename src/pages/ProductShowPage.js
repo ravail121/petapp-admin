@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { LoadingButton } from "@mui/lab";
+import { toast } from "react-toastify";
+
 import CropEasy from './Crop';
 
 import {
@@ -163,9 +165,18 @@ const ProductShowPage = () => {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
+    if (file.type === 'image/gif') {
+      toast.error("GIF images are not allowed.", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 3000,
+      });
+      // alert('GIF images are not allowed.');
+      event.target.value = ''; // Clear the file input
+      return;
+    }
     setSelectedImage(URL.createObjectURL(file));
     setImage(file);
-    handleChange(event)
+    // handleChange(event)
   };
   const handleChange = (e) => {
     const file = e.target.files[0];
