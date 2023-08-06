@@ -625,7 +625,24 @@ export default function UserPage() {
                           </TableRow>
                         )}
                       </TableBody>
+                      {categories.length == 0 && (
+                        <TableBody>
 
+                          <TableRow style={{ height: 53 * emptyRows }}>
+                            <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
+                              <Paper
+                                sx={{
+                                  textAlign: 'center',
+                                }}
+                              >
+                                <Typography variant="h6" paragraph>
+                                  Not Orders Found
+                                </Typography>
+                              </Paper>
+                            </TableCell>
+                          </TableRow>
+                        </TableBody>
+                      )}
 
                       {isNotFound && (
                         <TableBody>
